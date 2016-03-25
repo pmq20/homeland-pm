@@ -1,0 +1,20 @@
+<ol class="breadcrumb">
+  <li><a href="<%= homeland.root_path %>"><%= t('homeland.nav.home') %></a></li>
+  <li><a href="<%= homeland.personal_messages_path %>"><%= t('homeland.nav.pm') %></a></li>
+  <li class="active"><%= @item.title %></li>
+</ol>
+
+<div class="row">
+  <div class="pm-detail col-lg-9">
+    <h1>
+      <%= @item.title %>
+    </h1>
+
+    <p><%= t('activerecord.attributes.homeland/pm.sender') %>：<%= @item.sender.send(Homeland.config.user_name_method) %></p>
+    <p><%= t('activerecord.attributes.homeland/pm.created_at') %>：<%= l @item.created_at %></p>
+
+    <div class="pm-content">
+      <%= @item.body %>
+    </div>
+  </div>
+</div>

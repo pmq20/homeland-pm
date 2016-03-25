@@ -1,0 +1,29 @@
+<ol class="breadcrumb">
+  <li><a href="<%= homeland.root_path %>"><%= t('homeland.nav.home') %></a></li>
+  <li><a href="<%= homeland.personal_messages_path %>"><%= t('homeland.nav.pm') %></a></li>
+  <li class="active"><%= t('homeland.new') %></li>
+</ol>
+
+
+<%= form_for(@item) do |f| %>
+  <%= render_errors @item %>
+  <div class="form-group">
+    <%= f.label :receiver_id %>
+    <%= f.select :receiver_id, Homeland.config.user_class.constantize.all.collect { |n| [n.send(Homeland.config.user_name_method), n.id] }, {}, { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, class: "form-control", rows: "10" %>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary btn-lg" data-disable-with="<%= t('homeland.submiting') %>"><%= t('homeland.submit') %></button>
+    <a href="<%= homeland.personal_messages_path %>" class="btn btn-lg btn-default"><%= t('homeland.cancel') %></a>
+  </div>
+<% end %>
